@@ -47,13 +47,13 @@ export const getRestuarantByEmail = async (Email) => {
     return result[0];
 }
 
-export const createRestuarantImage = async (Restuarant_ID, Image) => {
-    const [ result ] = await pool.query("UPDATE Restuarant SET Image = ? WHERE Restuarant_ID = ?", [Image, Restuarant_ID]);
+export const createRestuarantImage = async (RestuarantID, Image) => {
+    const [ result ] = await pool.query("UPDATE Restuarant SET Image = ? WHERE RestuarantID = ?", [Image, RestuarantID]);
     return result;
 }
 
-export const removeRestuarantImage = async (Restuarant_ID) => {
-    const [ result ] = await pool.query("UPDATE Restuarant SET Image = NULL WHERE Restuarant_ID = ?", [Restuarant_ID]);
+export const removeRestuarantImage = async (RestuarantID) => {
+    const [ result ] = await pool.query("UPDATE Restuarant SET Image = NULL WHERE RestuarantID = ?", [RestuarantID]);
     return result;
 }
 
