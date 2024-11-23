@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-export const sendVerificationEmailForCustomer = async (email, token) => {
+export const sendVerificationEmailForRestuarant = async (email, token) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.ethereal.email",
         port: 587,
@@ -12,7 +12,7 @@ export const sendVerificationEmailForCustomer = async (email, token) => {
         },
     });
 
-    const verificationLink = `http://localhost:3000/api/customer/verify-email/${token}`;
+    const verificationLink = `http://localhost:3000/api/restuarant/verify-email/${token}`;
 
     const info = {
         from: process.env.SMTP_USERNAME, // sender address
