@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import CustomerRouter from './route/customer.js';
 import restuarantRouter from './route/restuarant.js';
+import foodsRouter from './route/foods.js';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const port = process.env.SERVER_PORT;
 app.use(express.json());
 app.use('/api/customer', CustomerRouter);
 app.use('/api/restuarant', restuarantRouter);
+app.use('/api/foods', foodsRouter);
 
 
 
