@@ -6,6 +6,7 @@ import foodsRouter from './route/foods.js';
 import adminRouter from './route/admin.js';
 import categoryRouter from './route/category.js';
 import ordersRouter from './route/orders.js';
+import ordersItemRouter from './route/ordersItem.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use('/api/foods', foodsRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/ordersItem', ordersItemRouter);
 
 
 

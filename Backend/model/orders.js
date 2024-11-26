@@ -12,7 +12,8 @@ export const updateOrder = async (orderID, status) => {
 
 export const deleteOrder = async (orderID) => {
     const [result] = await pool.query("DELETE FROM Orders WHERE orderID = ?", [orderID]);
-    return result;
+    const [result1] = await pool.query("DELETE FROM OrdersItem WHERE orderID = ?", [orderID]);
+    return result && result1;
 };
 
 export const getAllOrders = async () => {
