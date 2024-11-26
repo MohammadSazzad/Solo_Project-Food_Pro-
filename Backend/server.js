@@ -4,6 +4,7 @@ import CustomerRouter from './route/customer.js';
 import restuarantRouter from './route/restuarant.js';
 import foodsRouter from './route/foods.js';
 import adminRouter from './route/admin.js';
+import categoryRouter from './route/category.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use('/api/customer', CustomerRouter);
 app.use('/api/restuarant', restuarantRouter);
 app.use('/api/foods', foodsRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/category', categoryRouter);
 
 
 
