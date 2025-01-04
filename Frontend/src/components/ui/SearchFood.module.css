@@ -1,0 +1,42 @@
+.searchFoodUi {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px; 
+}
+
+.greetingsInput{
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.mainImageContainer {
+    margin-right: 15%;
+}
+
+.inputLocation {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 27px;
+    outline: none;
+}
+.inputContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-right: 15%;
+}
+
+.inputButton {
+    border-radius: 0 8px 8px 0;
+    padding: 19px 19px;
+    border: 1px solid #e0e0e0;
+    text-align: start;
+}
