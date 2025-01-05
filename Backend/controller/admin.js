@@ -58,7 +58,7 @@ export const adminLoginController = async(req, res) => {
             id: user.adminID,
             adminName: user.adminName,
             email: user.email,
-            role: 'admin'
+            role: user.role
         };
         const token = createToken(payload, '1d');
         return res.status(200).json({token});

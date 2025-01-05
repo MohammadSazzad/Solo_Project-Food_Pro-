@@ -1,0 +1,76 @@
+.restuarantHeroContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.restuarantContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 5px;
+    border-radius: 8px;
+    width: 100%;
+    background-color: white;
+}
+
+.restuarantContainer:hover {
+    transform: scale(1.01);
+    transition: transform 0.1s;
+    box-shadow: #5f5a49 0px 0px 10px;;
+}
+
+.restuarantInterior {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+}
+
+.heroContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 5px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.heroContainer:hover {
+    transform: scale(1.01);
+    transition: transform 0.1s;
+    box-shadow: #5f5a49 0px 0px 10px;
+}
+
+.hero {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+}
+
+.restuarantheroText {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.restuarantHeroButton {
+    width: 180px;
+    height: 50px;
+    background-color: #FFCA2C;
+    border-radius: 5px;
+    border: none;
+}
+
+.restuarantHeroButton:hover {
+    background-color: #FFB800;
+    box-shadow: #5f5a49 0px 0px 10px;
+}

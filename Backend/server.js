@@ -8,11 +8,14 @@ import categoryRouter from './route/category.js';
 import ordersRouter from './route/orders.js';
 import ordersItemRouter from './route/ordersItem.js';
 import cartRouter from './route/cart.js';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.SERVER_PORT;
+
+app.use(cors());
 app.use(express.json());
 app.use('/api/customer', CustomerRouter);
 app.use('/api/restuarant', restuarantRouter);

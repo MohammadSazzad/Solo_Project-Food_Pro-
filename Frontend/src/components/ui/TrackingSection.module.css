@@ -1,0 +1,25 @@
+.trackingSectionContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.pic {
+    height: 150px;
+    width: 150px;
+    margin-left: 30%;
+    margin-right: 20%;
+}
+
+.trackingSectionText {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+

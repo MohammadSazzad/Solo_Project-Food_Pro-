@@ -5,6 +5,11 @@ export const createCategory = async (categoryName) => {
     return result;
 }
 
+export const createCategoryImage = async (image) => {
+    const [result] = await pool.query("INSERT INTO Category (image) VALUES (?)", [image]);
+    return result;
+}
+
 export const updateCategory = async (categoryName, categoryID) => {
     const [result] = await pool.query("UPDATE Category SET categoryName = ? WHERE categoryID = ?", [categoryName, categoryID]);
     return result;
