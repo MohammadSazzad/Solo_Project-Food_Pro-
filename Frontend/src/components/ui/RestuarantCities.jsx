@@ -57,7 +57,7 @@ const RestuarantCities = () => {
     ]
 
     return (
-        <div>
+        <div className={styles.restuarantCitiesMainContainer}>
             <h3 className={styles.Header}>We Deliver to:</h3>
             <div className={styles.restuarantCitiesContainer}>
                 { obj.map ( (id) => 

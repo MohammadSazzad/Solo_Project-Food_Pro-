@@ -1,36 +1,31 @@
 .categoryContainer {
-    display: block;
-    justify-content: space-around;
-    align-items: center;
     margin-bottom: 100px;
 }
 
 .categoryMain {
-    display: flex;
-    gap: 3rem;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
     padding-left: 15%;
     padding-right: 15%;
 }
 
-.category {
-    min-width: 150px;
-    min-height: 150px;
-    background-color: #f5ecec;
-    border-radius: 10px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    border: solid 1px #e0e0e0;
+.SlideContainer {
+    margin: 50px;
+    gap: 10px;
 }
 
-.category:hover{
-    background-color: #f9f9f9;
-    transform: scale(1.01);
-    transition: transform 0.1s;
-    box-shadow: #5f5a49 0px 0px 10px;;
+.category {
+    width: 50px;
+    height: 200px;
+    padding: 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    
 }
 
 .Header {
+    margin-top: 1rem;
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 15%;

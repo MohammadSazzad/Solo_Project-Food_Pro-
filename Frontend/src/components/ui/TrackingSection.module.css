@@ -2,10 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
     padding-left: 15%;
     padding-right: 15%;
+    background-color: #f9f9f9;
 }
 
 .pic {
@@ -13,6 +12,7 @@
     width: 150px;
     margin-left: 30%;
     margin-right: 20%;
+    border-radius: 50%;
 }
 
 .trackingSectionText {
@@ -22,4 +22,3 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-

@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+      <div className='App'>
       <Header />
       <SearchFood />
       <Category />
@@ -19,6 +20,7 @@ function App() {
       <TrackingSection />
       <RestuarantCities />
       <Footer />
+      </div>
     </>
   )
 }
