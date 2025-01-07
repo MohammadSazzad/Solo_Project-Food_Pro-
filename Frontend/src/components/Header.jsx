@@ -1,5 +1,13 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    const handleLoginButton = () => {
+        console.log("Login button clicked");
+        navigate("/customer/login");
+    }
 
     return(
         <header className="p-3 text-bg-dark fixed-top">
@@ -13,7 +21,7 @@ const Header = () => {
 
                 <div className="text-end">
                 <button type="button" className="btn btn-outline-light me-5">{<AiOutlineShoppingCart/>}</button>
-                <button type="button" className="btn btn-outline-light me-2">Login</button>
+                <button type="button" className="btn btn-outline-light me-2" onClick={handleLoginButton}>Login</button>
                 <button type="button" className="btn btn-warning">Sign-up</button>
                 </div>
             </div>
