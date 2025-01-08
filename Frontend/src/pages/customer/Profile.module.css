@@ -1,0 +1,17 @@
+.container {
+    background-color: #f9f9fa;
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
+.profileContainer{
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    margin-left: 15% ;
+    margin-right: 15%;
+    border: solid 1px black;
+    border-radius: 10px;
+}

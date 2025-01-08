@@ -1,5 +1,5 @@
 import { createToken } from "../auth/createJWt.js";
-import { createTempCustomer, getCustomer, getTempCustByEmail, deleteTempCustomer, getCustomerByEmail, customerImage, removecustomerImage} from "../model/customer.js";
+import { createTempCustomer, getCustomer, getTempCustByEmail, deleteTempCustomer, getCustomerByEmail, customerImage, removecustomerImage, createCustomer} from "../model/customer.js";
 import uploadOnCloudinary from "../utility/cloudinary.js";
 import { sendVerificationEmailForCustomer } from "../auth/customerVerification.js";
 import jwt from "jsonwebtoken";
@@ -56,10 +56,8 @@ export const customerLoginController = async (req, res) => {
         return res.status(400).json({ error: "Invalid credentials" });
     }
     try{
-        const id = user.CustomerID;
-        console.log("Customer ID", id);
         const payload = {
-            id, // CustomerID
+            id, 
             FirstName: user.FirstName,
             LastName: user.LastName,
             Email,
@@ -68,6 +66,7 @@ export const customerLoginController = async (req, res) => {
             City: user.City,
             DateOfBirth: user.DateOfBirth,
             role: user.role,
+            image: user.image
         };
         const token = createToken(payload, "1d");
         res.status(200).json({ token });
