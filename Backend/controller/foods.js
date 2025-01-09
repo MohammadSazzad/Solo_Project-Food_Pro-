@@ -1,4 +1,4 @@
-import { createFoodImage, createFoodDetails, getFoodDetailsByFoodID, getAllFoods, getFoodByCategory, getFoodByRestuarantID, deleteFoodByFoodID, deleteFoodByRestuarantID } from '../model/foods.js';
+import { createFoodImage, createFoodDetails, getFoodDetailsByFoodID, getAllFoods, getFoodByCategory, getFoodByRestuarantID, deleteFoodByFoodID, deleteFoodByRestuarantID, orderHistory } from '../model/foods.js';
 import uploadOnCloudinary from '../utility/cloudinary.js';
 import { createToken } from '../auth/createJWt.js';
 
@@ -157,3 +157,28 @@ export const deleteFoodByRestuarantIDController = async(req, res) => {
         return res.status(500).json({message: error.message});
     }   
 }
+
+export const orderHistoryControler = async(req, res) => {
+    const customerID1 = req.params.CustomerID;
+    const customerID2 = req.user.id;
+
+    console.log(customerID1, customerID2, req.user.role);
+    if (req.user.role === 'customer' && String(customerID1) === String(customerID2)){
+        try{
+            const result = await orderHistory(customerID1);
+            return res.status(200).json(result);
+        }catch(error){
+            return res.status(500).json({message: error.message});
+        }
+    } else if(req.user.role === 'admin'){
+        try{
+            const result = await orderHistory(customerID1);
+            return res.status(200).json(result);
+        }catch(error){
+            return res.status(500).json({message: error.message});
+        }
+
+    } else{
+        return res.status(401).json({message: 'Unauthorized'});
+    }
+};

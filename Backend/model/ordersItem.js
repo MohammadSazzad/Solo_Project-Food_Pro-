@@ -24,3 +24,8 @@ export const getOrderItemByFoodID = async (foodID) => {
     const [result] = await pool.query("SELECT * FROM ordersItem WHERE foodID = ?", [foodID]);
     return result;
 }
+
+export const getStatus = async (customerID) => {
+    const [result] = await pool.query("SELECT ordersItem.status FROM ordersItem JOIN Orders ON ordersItem.orderID = Orders.OrderID WHERE Orders.customerID=?", [customerID]);
+    return result;
+}

@@ -5,6 +5,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements }f
 import Layout from './Layout.jsx'
 import Login from './pages/customer/Login.jsx'
 import Profile from './pages/customer/Profile.jsx'
+import ProductContextProvider from './store/ProductContextProvider.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ProductContextProvider>
+      <RouterProvider router={router} />
+    </ProductContextProvider>
   </StrictMode>,
 )

@@ -57,7 +57,7 @@ export const customerLoginController = async (req, res) => {
     }
     try{
         const payload = {
-            id, 
+            id: user.CustomerID, 
             FirstName: user.FirstName,
             LastName: user.LastName,
             Email,

@@ -1,4 +1,4 @@
-import { createOrderItem, getAllOrderItems, getOrderItemByID, getOrderItemByRestaurantID, getOrderItemByFoodID } from "../model/ordersItem.js";
+import { createOrderItem, getAllOrderItems, getOrderItemByID, getOrderItemByRestaurantID, getOrderItemByFoodID, getStatus } from "../model/ordersItem.js";
 
 export const createOrderItemController = async (req, res) => {
     if(req.user.role !== 'customer') {
@@ -64,4 +64,17 @@ export const getOrderItemByFoodIDController = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
         
+}
+
+export const getStatusController = async (req, res) => {
+    if(req.user.role !== 'customer') {
+        return res.status(401).json({message: 'Unauthorized'});
+    }
+    try{
+        const CustomerID = req.params.customerID;
+        const result = await getStatus(CustomerID);
+        return res.status(200).json(result);
+    }catch(error){
+        return res.status(500).json({message: error.message});
+    }
 }

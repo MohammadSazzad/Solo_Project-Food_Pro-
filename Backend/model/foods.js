@@ -41,3 +41,9 @@ export const deleteFoodByRestuarantID = async (RestuarantID) => {
     return result;
 }
 
+export const orderHistory = async (customerID) => {
+    const [ result ] = await pool.query("SELECT foods.foodName, foods.price, foods.image FROM foods JOIN ordersItem on foods.foodID = ordersItem.foodID JOIN Orders on ordersItem.orderID = Orders.OrderID WHERE Orders.customerID = ?", [customerID]);
+
+    return result;
+}
+

@@ -3,6 +3,7 @@ import login from '../../assets/Login.svg';
 import logo from '../../assets/Logo.png';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -11,23 +12,20 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmitButton = (e) => {
+
+    const handleSubmitButton = async(e) => {
         e.preventDefault();
         try{
-            fetch('/api/customer/login',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    Email: email.current.value,
+            const response = await axios.post('/api/customer/login',
+                {
+                    Email : email.current.value,
                     password: password.current.value
-                })
-            }).then(response => {
-                return response.json();
-            }).then(data => {
-                console.log(data);
-            });
+                }
+            );
+            console.log("Data: ", response.data);
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            alert("Login Successful");
             navigate('/customer/profile');
         }catch(error){
             alert("Login Failed");

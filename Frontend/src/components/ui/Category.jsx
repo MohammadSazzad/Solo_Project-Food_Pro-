@@ -20,6 +20,8 @@ const Category = () => {
             });
     }, []); 
 
+    console.log(category);
+
     const settings = {
       dots: true,
       infinite: true,

@@ -9,7 +9,9 @@ import {
     getFoodsByRestuarantIDController, 
     getFoodsByRestuarantID_AdminController,  
     deleteFoodByFoodIDController, 
-    deleteFoodByRestuarantIDController } from "../controller/foods.js";
+    deleteFoodByRestuarantIDController,
+    orderHistoryControler    
+} from "../controller/foods.js";
 import express from 'express';
 
 const foodsRouter = express.Router();
@@ -23,5 +25,6 @@ foodsRouter.get('/restuarant/', verifyToken, getFoodsByRestuarantIDController);
 foodsRouter.get('/restuarant-admin/:RestuarantID', verifyToken, getFoodsByRestuarantID_AdminController);
 foodsRouter.delete('/foodID/:foodID', verifyToken, deleteFoodByFoodIDController);
 foodsRouter.delete('/restuarant/:RestuarantID', verifyToken, deleteFoodByRestuarantIDController);
+foodsRouter.get('/order-history/:CustomerID', verifyToken, orderHistoryControler);
 
 export default foodsRouter;
