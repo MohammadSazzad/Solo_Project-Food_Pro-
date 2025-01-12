@@ -1,38 +1,38 @@
 import styles from './Login.module.css';
 import login from '../../assets/Login.svg';
 import logo from '../../assets/Logo.png';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ProductContext from '../../store/ProductContext';
 
 const Login = () => {
 
     const email = useRef();
     const password = useRef();
-
     const navigate = useNavigate();
 
-
     const handleSubmitButton = async(e) => {
-        e.preventDefault();
-        try{
-            const response = await axios.post('/api/customer/login',
-                {
-                    Email : email.current.value,
-                    password: password.current.value
-                }
-            );
-            console.log("Data: ", response.data);
-            const token = response.data.token;
-            localStorage.setItem('token', token);
-            alert("Login Successful");
-            navigate('/customer/profile');
-        }catch(error){
-            alert("Login Failed");
-            console.log(error);
+            e.preventDefault();
+            try{
+                const response = await axios.post('/api/customer/login',
+                    {
+                        Email : email.current.value,
+                        password: password.current.value
+                    }
+                );
+                console.log("Data: ", response.data);
+                const token = response.data.token;
+                localStorage.setItem('token', token);
+                alert("Login Successful");
+                navigate('/customer/profile');
+            }catch(error){
+                alert("Login Failed");
+                console.log(error);
+            }
+            e.target.reset();
         }
-        e.target.reset();
-    }
+        
 
     return ( 
         <div className={styles.container}>

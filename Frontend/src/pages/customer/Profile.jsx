@@ -3,16 +3,19 @@ import styles from './Profile.module.css';
 import { FaEdit } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
 import ProductContext from '../../store/ProductContext';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const token = localStorage.getItem('token');
   const user = jwtDecode(token);
-  const { orderHistory } = useContext(ProductContext);
+  const { orderHistory } = useContext(ProductContext); 
+  const navigate = useNavigate();
 
-    
+  const handleLogoutButton = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  }
 
   return (
     <div className={styles.container}>
@@ -32,7 +35,10 @@ const Profile = () => {
         </div>
 
         <div className={styles.orderHistory}>
-          <h3 className='mt-3 mb-3'>Order History</h3>
+          <div className={styles.orderHistoryHeader}>
+            <h3 className={styles.historyHeader}>Order History</h3>
+            <button type="button" className="btn btn-outline-light me-2" onClick={handleLogoutButton}>Logout</button>
+          </div>
           <table className={`${styles.tableContent} table table-striped  table-hover`}>
             <tbody>
               {orderHistory.slice(0, 6).map((order, index) => (

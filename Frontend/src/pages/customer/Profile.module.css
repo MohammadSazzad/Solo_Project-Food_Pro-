@@ -53,3 +53,19 @@
 .modal .modal-dialog {
     max-width: 800px;
 }
+
+.orderHistoryHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #212529;
+    border-radius: 10px 10px 0 0;
+}
+
+.historyHeader{
+    color: white;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

@@ -14,11 +14,15 @@ const router = createBrowserRouter(
       <Route path= "customer" >
         <Route path="login" element={<Login />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="logout" element={<App />} />
       </Route>
     </Route>
     
   )
 )
+
+const x = localStorage.getItem('token');
+console.log(x);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

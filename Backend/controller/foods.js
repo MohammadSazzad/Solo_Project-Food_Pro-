@@ -162,7 +162,6 @@ export const orderHistoryControler = async(req, res) => {
     const customerID1 = req.params.CustomerID;
     const customerID2 = req.user.id;
 
-    console.log(customerID1, customerID2, req.user.role);
     if (req.user.role === 'customer' && String(customerID1) === String(customerID2)){
         try{
             const result = await orderHistory(customerID1);

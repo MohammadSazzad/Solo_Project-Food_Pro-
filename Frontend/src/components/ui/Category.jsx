@@ -1,27 +1,12 @@
 import styles from './Category.module.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ProductContext from '../../store/ProductContext';
 
 const Category = () => {
-
-    const [category, setCategory] = useState([]);
-
-    useEffect(() => {
-        axios.get('/api/category/all')
-            .then((response) => {
-                setCategory( response.data.map((item) => ({id: item.categoryID, name: item.categoryName, image: item.image }))
-                );
-            })
-            .catch((error) => {
-                console.error('Error fetching categories:', error);
-            });
-    }, []); 
-
-    console.log(category);
-
+    const { category } = useContext(ProductContext);
     const settings = {
       dots: true,
       infinite: true,

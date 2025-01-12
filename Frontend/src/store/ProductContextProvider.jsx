@@ -5,12 +5,16 @@ import { jwtDecode } from "jwt-decode";
 
 const ProductContextProvider = ({children}) => {
     const [orderHistory, setOrderHistory] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [category, setCategory] = useState([]);
 
     const token = localStorage.getItem("token");
-    const decodedToken = jwtDecode(token);
-    const customerID = decodedToken.id;
+    const decodedToken = token?jwtDecode(token):{};
+    const customerID = token?decodedToken.id:null;
+
     useEffect(() => {
+        if (!token) {
+            return;
+        }
         const headers = {
             Authorization: `Bearer ${token}`,
         };
@@ -23,7 +27,7 @@ const ProductContextProvider = ({children}) => {
                 );
             })
             .catch((error) => {
-                console.error('Error fetching categories:', error);
+                console.error('Error fetching profile data:', error);
             });
         return () => {
             controller.abort();
@@ -31,9 +35,20 @@ const ProductContextProvider = ({children}) => {
             
     }, []);
 
+    useEffect(() => {
+        axios.get('/api/category/all')
+            .then((response) => {
+                setCategory( response.data.map((item) => ({id: item.categoryID, name: item.categoryName, image: item.image }))
+                );
+            })
+            .catch((error) => {
+                console.error('Error fetching categories:', error);
+            });
+    }, []); 
+
     const context = {
         orderHistory,
-        isLoading,
+        category,
     };
 
     return (
