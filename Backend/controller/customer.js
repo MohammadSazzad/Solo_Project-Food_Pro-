@@ -30,16 +30,18 @@ export const createCustomerController = async (req, res) => {
 
 export const verifyCustomerController = async (req, res) => {
     const { token } = req.params;
+    console.log("Token", token);
     try {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
         const { Email } = decoded;
         const user = await getTempCustByEmail(Email);
+        console.log("User", user);
         if(!user) {
             return res.status(404).json({ error: "User not found" });
         }
         await createCustomer(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.Address, user.City, user.DateOfBirth, user.password);
         await deleteTempCustomer(Email);
-        res.status(200).json({ message: "Account has been verified" });
+        res.status(200).json({ message: "Account has been verified"});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

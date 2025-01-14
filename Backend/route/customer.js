@@ -7,7 +7,7 @@ const CustomerRouter = express.Router();
 
 CustomerRouter.post("/register", createCustomerController);
 CustomerRouter.post("/login", customerLoginController);
-CustomerRouter.get("verify-email/:token", verifyCustomerController);
+CustomerRouter.get("/verify-email/:token", verifyCustomerController);
 CustomerRouter.get("/allCustomer", verifyToken, getCustomerController); 
 CustomerRouter.post("/customerImage/:token", upload.single("file"), customerImageController);
 CustomerRouter.put("/removeCustomerImage/:token", removeCustomerImageController);
