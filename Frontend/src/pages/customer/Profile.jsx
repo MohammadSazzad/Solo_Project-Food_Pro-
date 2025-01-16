@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
 import ProductContext from '../../store/ProductContext';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/Logo.png';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,12 +18,16 @@ const Profile = () => {
     navigate('/');
   }
 
+  const handleEditButton = () => {
+    navigate("/customer/update");
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.profileContainer}>
         <div className={styles.customerInfo}>
           <img
-            src={user.image}
+            src={user.image?user.image:logo}
             alt="Profile"
             className={styles.imageDetails}
           />
@@ -30,7 +35,7 @@ const Profile = () => {
             <h1>{user.FirstName} {user.LastName}</h1>
             <h3>{user.Email}</h3>
             <h3>{user.PhoneNumber}</h3>
-            <button type="button" className="btn"><FaEdit /></button>
+            <button type="button" className="btn" onClick={handleEditButton}><FaEdit /></button>
           </div>
         </div>
 

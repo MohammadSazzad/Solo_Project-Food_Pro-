@@ -69,3 +69,13 @@ export const removecustomerImage = async (customerID) => {
     const [result] = await pool.query("UPDATE Customer SET image = NULL WHERE customerID = ?", [customerID]);
     return result;
 }
+
+export const updateCustomer = async (FirstName, LastName, Address, City, DateOfBirth, CustomerID) => { 
+    const [result] = await pool.query("UPDATE Customer SET FirstName = ?, LastName = ?, Address = ?, City = ?, DateOfBirth = ? WHERE CustomerID = ?", [FirstName, LastName, Address, City, DateOfBirth, CustomerID]);
+    return result;
+}
+
+export const getCustomerByID = async (CustomerID) => {
+    const [result] = await pool.query("SELECT * FROM Customer WHERE CustomerID = ?", [CustomerID]);
+    return result[0];
+}

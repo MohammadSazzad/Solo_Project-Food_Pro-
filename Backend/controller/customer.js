@@ -1,5 +1,5 @@
 import { createToken } from "../auth/createJWt.js";
-import { createTempCustomer, getCustomer, getTempCustByEmail, deleteTempCustomer, getCustomerByEmail, customerImage, removecustomerImage, createCustomer} from "../model/customer.js";
+import { createTempCustomer, getCustomer, getTempCustByEmail, deleteTempCustomer, getCustomerByEmail, customerImage, removecustomerImage, createCustomer, getCustomerByID, updateCustomer} from "../model/customer.js";
 import uploadOnCloudinary from "../utility/cloudinary.js";
 import { sendVerificationEmailForCustomer } from "../auth/customerVerification.js";
 import jwt from "jsonwebtoken";
@@ -93,6 +93,7 @@ export const getCustomerController = async (req, res) => {
 export const customerImageController = async (req, res) => {
     const Token = req.params.token;
     const decoded = jwt.verify(Token, process.env.ACCESS_TOKEN);
+    console.log("Decoded", decoded);
     const {role} = decoded;
     if(role !== "customer"){
         return res.status(401).json({ error: "Unauthorized" });
@@ -126,6 +127,26 @@ export const removeCustomerImageController = async (req, res) => {
         }
         await removecustomerImage(id);
         res.status(200).json({ message: "Image removed successfully" });
+    }catch(error){
+        return res.status(500).json({ error: error.message });
+    }
+};
+
+export const updateCustomerDetailsController = async (req, res) => {
+    const CustomerID = req.params.customerID;
+    const { firstName, lastName, address, city, dateOfBirth } = req.body;
+    const user = await getCustomerByID(CustomerID);
+    const updateFirstName = firstName || user.FirstName ;
+    const updateLastName = lastName || user.LastName ;
+    const updateAddress = address || user.Address ;
+    const updateCity = city || user.City ;
+    const updateDateOfBirth = dateOfBirth || user.DateOfBirth ;
+    if(user.role !== "customer"){
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+        await updateCustomer(updateFirstName, updateLastName, updateAddress, updateCity, updateDateOfBirth, CustomerID);
+        res.status(200).json({ message: "User details updated successfully" });
     }catch(error){
         return res.status(500).json({ error: error.message });
     }

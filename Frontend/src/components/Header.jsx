@@ -1,6 +1,7 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import logo from "../assets/Logo.png";
 const Header = () => {
 
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Header = () => {
 
     const isLogin = localStorage.getItem("token");
     const token = isLogin?jwtDecode(isLogin):{};
-    const img = token.image;
+    const img = token.image?token.image : logo;
 
     return(
         <header className="p-3 text-bg-dark fixed-top">
