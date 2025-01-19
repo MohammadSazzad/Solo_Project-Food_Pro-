@@ -14,13 +14,14 @@ const Header = () => {
         navigate("/customer/login");
     }
 
-    const handleProfileButton = () => {
-        navigate("/customer/profile");
-    }
-
     const isLogin = localStorage.getItem("token");
     const token = isLogin?jwtDecode(isLogin):{};
     const img = token.image?token.image : logo;
+
+    const handleProfileButton = () => {
+        if(token.role === "seller") navigate("/restuarant/profile");
+        else if(token.role === "customer")navigate("/customer/profile");
+    }
 
     return(
         <header className="p-3 text-bg-dark fixed-top">

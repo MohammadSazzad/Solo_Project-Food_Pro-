@@ -1,4 +1,4 @@
-import { createTempRestuarant, getRestaurants, getRestuarantByEmail, getTempRestuarantByEmail, deleteTempRestuarant, createRestuarant, createRestuarantImage, removeRestuarantImage } from "../model/restuarant.js";
+import { createTempRestuarant, getRestaurants, getRestuarantByEmail, getTempRestuarantByEmail, deleteTempRestuarant, createRestuarant, createRestuarantImage, removeRestuarantImage, updateRestuarantDetails, getRestuarantByID } from "../model/restuarant.js";
 import bcrypt from "bcrypt";
 import { createToken } from "../auth/createJWt.js";
 import { sendVerificationEmailForRestuarant } from "../auth/restuarantVerification.js";
@@ -68,6 +68,7 @@ export const restuarantLoginController = async (req, res) => {
             Address: user.Address,
             City: user.City,
             role: user.role,
+            image: user.image,
         };
         const token = createToken(payload, "1d");
         res.status(200).json({ token });
@@ -125,3 +126,23 @@ export const removeRestuarantOwnerImageController = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+export const updateRestuarantDetailsController = async (req, res) => {
+    const { restuarant_Name, owner_Name, phoneNumber, address, city } = req.body;
+    const RestuarantID = req.params.ResID;
+    const user = await getRestuarantByID(RestuarantID);
+    if(!user){
+        return res.status(404).json({ error: "User not found" });
+    }
+    const updatedRestuarant_Name = restuarant_Name || user.Restuarant_Name;
+    const updatedOwner_Name = owner_Name || user.Owner_Name;
+    const updatedPhoneNumber = phoneNumber || user.PhoneNumber;
+    const updatedAddress = address || user.Address;
+    const updatedCity = city || user.City;
+    try{
+        await updateRestuarantDetails(RestuarantID, updatedRestuarant_Name, updatedOwner_Name, updatedPhoneNumber, updatedAddress, updatedCity);
+        res.status(200).json({ message: "Details updated successfully" });
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
+};

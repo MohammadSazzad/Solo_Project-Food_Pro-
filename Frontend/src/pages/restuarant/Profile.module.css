@@ -1,0 +1,71 @@
+.profileContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: solid 1px black;
+    border-radius: 10px ;
+    background-color: white;
+    margin-top: 100px;
+}
+
+.customerInfo {
+    flex: 0 0 40%; /* 40% width */
+    background-color: #e6817e;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.imageDetails {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    padding: 5 px;
+    margin: 5px;
+}
+
+.customerDetails{
+    margin-top: 40px;
+    padding-bottom: 30px;
+}
+
+.productHistory {
+    flex: 0 0 55%; /* 60% width */
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal .modal-dialog {
+    max-width: 800px;
+}
+
+.productHistoryHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #212529;
+    border-radius: 10px 10px 0 0;
+}
+
+.historyHeader{
+    color: white;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

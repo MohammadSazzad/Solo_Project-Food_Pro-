@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = () => {
+const ResLogin = () => {
 
     const email = useRef();
     const password = useRef();
@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmitButton = async(e) => {
             e.preventDefault();
             try{
-                const response = await axios.post('/api/customer/login',
+                const response = await axios.post('/api/restuarant/login',
                     {
                         Email : email.current.value,
                         password: password.current.value
@@ -24,7 +24,7 @@ const Login = () => {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 alert("Login Successful");
-                navigate('/customer/profile');
+                navigate('/restuarant/profile');
             }catch(error){
                 alert("Login Failed");
                 console.log(error);
@@ -66,4 +66,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default ResLogin;

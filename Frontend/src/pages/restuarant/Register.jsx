@@ -120,7 +120,7 @@ const ResRegister = () => {
                         <div className='d-flex justify-content-center'>
                             <button type='submit' className={`${styles.Buttn} btn btn-success btn-block btn-lg text-body`}>Submit</button>
                         </div>
-                        <p className='text-center text-muted mt-5 mb-0'>Have already an account?<a href="#" className='fw-bold text-body'>Login Here</a></p>
+                        <p className='text-center text-muted mt-5 mb-0'>Have already an account?<a href="/restuarant/login" className='fw-bold text-body'>Login Here</a></p>
 
                         </form>
                     </div>

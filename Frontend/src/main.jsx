@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements }from 'react-router-dom'
 import Layout from './Layout.jsx'
+import ResLogin from './pages/restuarant/Login.jsx'
 import Login from './pages/customer/Login.jsx'
 import Profile from './pages/customer/Profile.jsx'
 import ProductContextProvider from './store/ProductContextProvider.jsx'
 import Register from './pages/customer/Register.jsx'
 import ResRegiser from './pages/restuarant/Register.jsx'
 import UpdateProfile from './pages/customer/UpdateProfile.jsx'
+import ResProfile from './pages/restuarant/Profile.jsx'
+import ResUpdateProfile from './pages/restuarant/UpdateProfile.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +26,10 @@ const router = createBrowserRouter(
       </Route>
       <Route path='restuarant'>
         <Route path='signup' element={<ResRegiser />} />
+        <Route path='login' element={ < ResLogin /> } />
+        <Route path='profile' element={< ResProfile />} />
+        <Route path='logout' element={<App />} />
+        <Route path='update' element={<ResUpdateProfile/>} />
       </Route>
     </Route>
     

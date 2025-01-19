@@ -57,3 +57,13 @@ export const removeRestuarantImage = async (RestuarantID) => {
     return result;
 }
 
+export const updateRestuarantDetails = async (RestuarantID, Restuarant_Name, Owner_Name, PhoneNumber, Address, City) => {
+    const [ result ] = await pool.query("UPDATE Restuarant SET Restuarant_Name = ?, Owner_Name = ?, PhoneNumber = ?, Address = ?, City = ? WHERE RestuarantID = ?", [Restuarant_Name, Owner_Name, PhoneNumber, Address, City, RestuarantID]);
+    return result;
+}
+
+export const getRestuarantByID = async (RestuarantID) => {
+    const [ result ] = await pool.query("SELECT * FROM Restuarant WHERE RestuarantID = ?", [RestuarantID]);
+    return result[0];
+}
+
