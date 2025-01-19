@@ -29,7 +29,7 @@
 .restuarantCities:hover {
     transform: scale(1.01);
     transition: transform 0.1s;
-    box-shadow: #5f5a49 0px 0px 10px;;
+    box-shadow: #5f5a49 0px 0px 10px;
 }
 
 .citiesImage {

@@ -7,6 +7,7 @@ import Login from './pages/customer/Login.jsx'
 import Profile from './pages/customer/Profile.jsx'
 import ProductContextProvider from './store/ProductContextProvider.jsx'
 import Register from './pages/customer/Register.jsx'
+import ResRegiser from './pages/restuarant/Register.jsx'
 import UpdateProfile from './pages/customer/UpdateProfile.jsx'
 
 const router = createBrowserRouter(
@@ -19,6 +20,9 @@ const router = createBrowserRouter(
         <Route path="logout" element={<App />} />
         <Route path="signup" element={<Register />} />
         <Route path="update" element={<UpdateProfile/>} />
+      </Route>
+      <Route path='restuarant'>
+        <Route path='signup' element={<ResRegiser />} />
       </Route>
     </Route>
     

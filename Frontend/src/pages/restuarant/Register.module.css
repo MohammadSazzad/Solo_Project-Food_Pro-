@@ -1,0 +1,15 @@
+.Buttn{
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #84FAB1, #8FD4F2);
+}
+
+.Buttn:hover{
+    background-image: linear-gradient(to right, #8FD4F2, #84FAB1);
+    transform: scale(1.01);
+    transition: transform 0.1s;
+    box-shadow: #5f5a49 0px 0px 10px;
+}
