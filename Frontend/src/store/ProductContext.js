@@ -21,6 +21,9 @@ const ProductContext = createContext(
         isLoading: false,
         category: [],
         setCategory: () => {},
+        categoryClicked: [],
+        setCategoryClicked: () => {},
+        handleCategoryClick: () => {},
     }
 );
 

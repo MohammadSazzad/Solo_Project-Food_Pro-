@@ -12,6 +12,7 @@ import ResRegiser from './pages/restuarant/Register.jsx'
 import UpdateProfile from './pages/customer/UpdateProfile.jsx'
 import ResProfile from './pages/restuarant/Profile.jsx'
 import ResUpdateProfile from './pages/restuarant/UpdateProfile.jsx'
+import CategoryFood from './pages/foods/CategoryFood.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,13 +32,13 @@ const router = createBrowserRouter(
         <Route path='logout' element={<App />} />
         <Route path='update' element={<ResUpdateProfile/>} />
       </Route>
+      <Route path='foods'>
+        <Route path='categoryFood/:categoryName/:categoryID' element={<CategoryFood/>} />
+      </Route>
     </Route>
     
   )
 )
-
-const x = localStorage.getItem('token');
-console.log(x);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

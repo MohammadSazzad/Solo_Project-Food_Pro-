@@ -77,9 +77,6 @@ export const getAllFoodsController = async(req, res) => {
 
 export const getFoodsByCategoryController = async(req, res) => {
     const categoryID = req.params.categoryID;
-    if(req.user.role !== 'admin'){
-        return res.status(401).json({message: 'Unauthorized'});
-    }
     try{
         const result = await getFoodByCategory(categoryID);
         return res.status(200).json(result);

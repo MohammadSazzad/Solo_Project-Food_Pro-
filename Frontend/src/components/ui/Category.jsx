@@ -1,5 +1,6 @@
 import styles from './Category.module.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,6 +16,12 @@ const Category = () => {
       slidesToScroll: 1
     };
 
+    const navigate = useNavigate();
+
+    const handleCategoryClick = (name,id) => () => {
+        navigate(`/foods/categoryFood/${name}/${id}`);
+    };
+
     return (
         <div className={styles.categoryContainer}>
             <h1 className={styles.Header}>Category</h1>
@@ -22,10 +29,10 @@ const Category = () => {
                 <div className={styles.categoryMain}>
                 <div className={`${styles.SlideContainer}slider-container`}> 
                 <Slider {...settings}>
-                    {category.map((id) => (
-                        <div key={id.id} className={styles.category} onClick={() => console.log(id.name)}>
-                            <img src={id.image} alt={id.name} className={styles.categoryImage}/>
-                            <h4 className={styles.headerName}>{id.name}</h4>
+                    {category.map((category) => (
+                        <div key={category.id} className={styles.category} onClick={handleCategoryClick(category.name, category.id)}>
+                            <img src={category.image} alt={category.name} className={styles.categoryImage}/>
+                            <h4 className={styles.headerName}>{category.name}</h4>
                         </div>
                     ))}
                     </Slider>

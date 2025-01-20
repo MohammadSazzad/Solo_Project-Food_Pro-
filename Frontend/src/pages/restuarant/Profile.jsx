@@ -35,8 +35,6 @@ const ResProfile = () => {
     }
   }, []);
 
-  console.log(productHistory);
-
   const handleLogoutButton = () => {
     localStorage.removeItem('token');
     navigate('/');
