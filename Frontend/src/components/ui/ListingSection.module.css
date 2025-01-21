@@ -1,0 +1,31 @@
+.listingSectionUi {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f1;
+    border-radius: 8px;
+}
+
+.listingInput{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-left: 14%;
+}
+.mainImageContainer {
+    margin-right: 14%;
+}
+
+.listingButton {
+    border-radius: 8px;
+    padding: 19px 19px;
+    border: 1px solid #e0e0e0;
+    text-align: start;
+}
+
+.listingButton:hover {
+    transform: scale(1.01);
+    transition: transform 0.1s;
+    box-shadow: #5f5a49 0px 0px 10px;
+}
