@@ -1,0 +1,26 @@
+.imageContainer {
+    margin-top: 74px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    color: #9CBD27;
+    font-weight: 400;
+    padding-left: 60%;
+    padding-right: 15%;
+}
+
+.cardContainer{
+    display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5px;
+    gap: 1rem;
+    background-color: #f9f9f1;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.formContainer{
+    width: 100%;
+    padding: 15px;
+}

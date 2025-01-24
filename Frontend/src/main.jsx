@@ -13,6 +13,7 @@ import UpdateProfile from './pages/customer/UpdateProfile.jsx'
 import ResProfile from './pages/restuarant/Profile.jsx'
 import ResUpdateProfile from './pages/restuarant/UpdateProfile.jsx'
 import CategoryFood from './pages/foods/CategoryFood.jsx'
+import FoodListing from './pages/restuarant/FoodListing.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         <Route path='profile' element={< ResProfile />} />
         <Route path='logout' element={<App />} />
         <Route path='update' element={<ResUpdateProfile/>} />
+        <Route path='foodListing' element={<FoodListing/>} />
       </Route>
       <Route path='foods'>
         <Route path='categoryFood/:categoryName/:categoryID' element={<CategoryFood/>} />
