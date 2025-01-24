@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import cuisine from '../../assets/best_cuisine.svg';
 import styles from './CategoryFood.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { MdOutlineDeliveryDining } from "react-icons/md";
 
@@ -14,8 +14,8 @@ const CategoryFood = () => {
 
     const { categoryName, categoryID } = useParams();
     const [foods, setFoods] = useState([]);
+    const navigate = useNavigate();
 
-    console.log(categoryID);
 
     useEffect(() => {
         axios.get(`/api/foods/category/${categoryID}`)
@@ -26,7 +26,10 @@ const CategoryFood = () => {
                 console.error('Error fetching foods:', error);
             });
     }, []);
-    console.log(foods);
+
+    const handleViewDetails = (id) => () => {
+        navigate(`/foods/foodDetails/${id}`);
+    };
 
     const [seeeMore, setSeeMore] = useState(false);
 
@@ -49,7 +52,7 @@ const CategoryFood = () => {
                                                 <h5 className="card-title">{card.name}</h5>
                                                 <p>!!{categoryName} </p>
                                                 <div className="d-flex justify-content-between align-items-center">
-                                                    <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                                                    <button type="button" className="btn btn-sm btn-outline-secondary" onClick={handleViewDetails(card.id)}>View</button>
                                                     <small className="text-body-secondary"><MdOutlineDeliveryDining /> 30tk</small>
                                                 </div>
                                             </div>
@@ -72,7 +75,7 @@ const CategoryFood = () => {
                                                     <h5 className="card-title">{card.name}</h5>
                                                     <p>!!{categoryName} </p>
                                                     <div className="d-flex justify-content-between align-items-center">
-                                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                                                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={handleViewDetails(card.id)}>View</button>
                                                         <small className="text-body-secondary"><MdOutlineDeliveryDining /> 30tk</small>
                                                     </div>
                                                 </div>
