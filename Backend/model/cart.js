@@ -2,19 +2,20 @@ import { pool } from './db.js';
 
 export const getFoodName = async (foodID) => {
     const [ result ] = await pool.query(
-        `SELECT foodName FROM foods WHERE foodID = ?`,
+        `SELECT * FROM foods WHERE foodID = ?`,
         [foodID]
-    );
-    return result[0].foodName;
-}
-
-export const createCart = async (customerID, foodID, RestuarantID, foodName) => {
-    const [ result ] = await pool.query(
-        `INSERT INTO cart (customerID, foodID, RestuarantID, foodName) VALUES (?, ?, ?, ?)`,
-        [customerID, foodID, RestuarantID, foodName]
     );
     return result;
 }
+
+export const createCart = async (customerID, foodID, RestuarantID, foodName, price, image) => {
+    const [result] = await pool.query(
+        `INSERT INTO cart (customerID, foodID, RestuarantID, foodName, price, image) VALUES (?, ?, ?, ?, ?, ?)`,
+        [customerID, foodID, RestuarantID, foodName, price, image]
+    );
+    return result;
+};
+
 
 export const removeFoodFromCart = async (cartID) => {
     const [ result ] = await pool.query(

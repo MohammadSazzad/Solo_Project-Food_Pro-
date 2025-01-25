@@ -23,6 +23,10 @@ const Header = () => {
         else if(token.role === "customer")navigate("/customer/profile");
     }
 
+    const handleCartButton = () => {
+        navigate("/foods/cart");
+    }
+
     return(
         <header className="p-3 text-bg-dark fixed-top">
             <div className="container">
@@ -34,7 +38,7 @@ const Header = () => {
 
 
                 <div className="text-end">
-                <button type="button" className="btn btn-outline-light me-5">{<AiOutlineShoppingCart/>}</button>
+                <button type="button" className="btn btn-outline-light me-5" onClick={handleCartButton}>{<AiOutlineShoppingCart/>}</button>
                 {isLogin ? (
                     <button type="button" className="btn p-0 border border-black rounded-circle " onClick={handleProfileButton}>{
                         <img src={img} alt="Profile" style={{width: '40px', height: '40px', borderRadius: '50%'}} />

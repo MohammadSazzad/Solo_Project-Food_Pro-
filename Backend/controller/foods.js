@@ -35,7 +35,7 @@ export const createFoodDetailsController = async(req, res) => {
 
 export const getFoodsByFoodIDController = async(req, res) => {
     const FoodID = req.params.foodID;
-    if(req.user.role === 'seller' || req.user.role === 'admin'){
+    if(req.user.role === 'seller' || req.user.role === 'admin' || req.user.role === 'customer'){
         try{
             const result = await getFoodDetailsByFoodID(FoodID);
             return res.status(200).json(result);

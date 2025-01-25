@@ -7,8 +7,8 @@ export const createCartController = async (req, res) => {
     try{
         const CustomerID = req.user.id;
         const { foodID, RestuarantID } = req.body;
-        const foodName = await getFoodName(foodID);
-        const result = await createCart(CustomerID, foodID, RestuarantID, foodName);
+        const foods = await getFoodName(foodID);
+        const result = await createCart(CustomerID, foodID, RestuarantID, foods[0].foodName, foods[0].price, foods[0].image);
         return res.status(201).json(result);
     }catch(error){
         res.status(500).json({ message: error.message });

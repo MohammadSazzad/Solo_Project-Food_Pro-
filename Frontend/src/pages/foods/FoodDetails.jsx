@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import styles from './FoodDetails.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const FoodDetails = () => {
@@ -9,6 +9,7 @@ const FoodDetails = () => {
     const [food, setFood] = useState([]);
 
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFoodDetails = async () => {
@@ -26,6 +27,26 @@ const FoodDetails = () => {
         fetchFoodDetails();
     }, [foodID, token]); 
 
+    console.log(food);
+
+    const handleAddCartButton = async() => {
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        try{
+            const response = await axios.post('/api/cart/create', 
+            {
+                foodID: food.foodID,
+                RestuarantID: food.RestuarantID,
+            },
+            { headers });
+            console.log('Added to cart:', response.data);
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+        navigate('/foods/cart');
+    }
+
     const [mainImage, setMainImage] = useState({});
 
     const thumbnails = [
@@ -38,6 +59,8 @@ const FoodDetails = () => {
     const changeImage = (src) => {
         setMainImage(src);
     };
+
+    console.log(food);
 
     return (
         <div className="container mt-5 pt-5">
@@ -130,7 +153,7 @@ const FoodDetails = () => {
                 style={{ width: "80px" }}
                 />
             </div>
-            <button className="btn btn-primary btn-lg mb-3 me-2">
+            <button className="btn btn-primary btn-lg mb-3 me-2" onClick={handleAddCartButton}>
                 <i className="bi bi-cart-plus"></i> Add to Cart
             </button>
             <button className="btn btn-outline-secondary btn-lg mb-3">

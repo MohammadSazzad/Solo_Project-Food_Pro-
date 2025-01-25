@@ -15,6 +15,7 @@ import ResUpdateProfile from './pages/restuarant/UpdateProfile.jsx'
 import CategoryFood from './pages/foods/CategoryFood.jsx'
 import FoodListing from './pages/restuarant/FoodListing.jsx'
 import FoodDetails from './pages/foods/FoodDetails.jsx'
+import Cart from './pages/foods/Cart.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route path='foods'>
         <Route path='categoryFood/:categoryName/:categoryID' element={<CategoryFood/>} />
         <Route path='foodDetails/:foodID' element={<FoodDetails/>} />
+        <Route path='cart/' element={ <Cart /> } />
       </Route>
     </Route>
     
