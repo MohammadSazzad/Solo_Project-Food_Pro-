@@ -20,7 +20,7 @@ const Cart = () => {
         const signal = controller.signal;
         axios.get(`/api/cart/customer`, {headers, signal})
             .then((response) => {
-                setCartFoods( response.data.map((item) => ({foodName: item.foodName, price: item.price, stock: item.stock, image: item.image }))
+                setCartFoods( response.data.map((item) => ({id:item.cartID, foodName: item.foodName, price: item.price, stock: item.stock, image: item.image }))
                 );
             })
             .catch((error) => {
@@ -30,8 +30,27 @@ const Cart = () => {
             controller.abort();
         }
     }, []);
-
-    console.log(cartFoods);
+    const handleCartDeleteButton = async(id) => {
+        const token = localStorage.getItem('token');
+        if(!token) {
+            return;
+        }
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        const controller = new AbortController();
+        const signal = controller.signal;
+        await axios.delete('/api/cart/remove', {headers, data: {cartID: id}, signal})
+            .then((response) => {
+                setCartFoods(cartFoods.filter((item) => item.id !== id));
+            })
+            .catch((error) => {
+                console.error('Error deleting from cart:', error);
+            });
+        return () => {
+            controller.abort();
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -54,12 +73,14 @@ const Cart = () => {
                                 <div className="d-flex flex-column align-items-center">
                                     <span className="font-weight-bold">{item.foodName}</span>
                                 </div>
-                                <div className="d-flex flex-row align-items-center qty"><FiMinus />
-                                    <h5 className="text-grey mt-1 mr-1 ml-1">1</h5><FiPlus /></div>
+                                <div className="d-flex flex-row align-items-center">
+                                    <FiMinus />
+                                    <h5 className="text-grey mt-1 mr-1 ml-1">1</h5>
+                                    <FiPlus /></div>
                                 <div>
-                                    <h5 className="text-grey"><TbCurrencyTaka />{item.price}</h5>
+                                    <h5 className="d-flex flex-row align-items-center"><TbCurrencyTaka />{item.price}</h5>
                                 </div>
-                                <div className="d-flex align-items-center" type="button"><RiDeleteBin6Fill /></div>
+                                <div className="d-flex align-items-center" type="button" onClick={ () => handleCartDeleteButton(item.id)}><RiDeleteBin6Fill /></div>
                             </div>
                         ))
                     }
