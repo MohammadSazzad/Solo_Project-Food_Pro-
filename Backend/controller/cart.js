@@ -1,4 +1,4 @@
-import { getFoodName, createCart, removeFoodFromCart, getAllCart, getCartByCustomerID, getCartByrestaurant } from "../model/cart.js";
+import { getFoodName, createCart, removeFoodFromCart, getAllCart, getCartByCustomerID, getCartByrestaurant, removeFoodFromCartByCustomer } from "../model/cart.js";
 
 export const createCartController = async (req, res) => {
     if(req.user.role !== 'customer') {
@@ -6,9 +6,9 @@ export const createCartController = async (req, res) => {
     }
     try{
         const CustomerID = req.user.id;
-        const { foodID, RestuarantID } = req.body;
+        const { foodID, RestuarantID, quantity } = req.body;
         const foods = await getFoodName(foodID);
-        const result = await createCart(CustomerID, foodID, RestuarantID, foods[0].foodName, foods[0].price, foods[0].image);
+        const result = await createCart(CustomerID, foodID, RestuarantID, foods[0].foodName, foods[0].price, quantity, foods[0].image);
         return res.status(201).json(result);
     }catch(error){
         res.status(500).json({ message: error.message });
@@ -22,6 +22,19 @@ export const removeFoodFromCartController = async (req, res) => {
     try{
         const { cartID } = req.body;
         const result = await removeFoodFromCart(cartID);
+        return res.status(200).json(result);
+    }catch(error){
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const removeFoodFromCartByCustomerController = async (req, res) => {
+    if(req.user.role !== 'customer') {
+        return res.status(403).json({ message: 'Please login as customer to remove a food from cart.' });
+    }
+    try{
+        const customerID = req.user.id;
+        const result = await removeFoodFromCartByCustomer(customerID);
         return res.status(200).json(result);
     }catch(error){
         res.status(500).json({ message: error.message });

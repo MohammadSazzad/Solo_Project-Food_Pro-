@@ -8,10 +8,10 @@ export const getFoodName = async (foodID) => {
     return result;
 }
 
-export const createCart = async (customerID, foodID, RestuarantID, foodName, price, image) => {
+export const createCart = async (customerID, foodID, RestuarantID, foodName, price, quantity, image) => {
     const [result] = await pool.query(
-        `INSERT INTO cart (customerID, foodID, RestuarantID, foodName, price, image) VALUES (?, ?, ?, ?, ?, ?)`,
-        [customerID, foodID, RestuarantID, foodName, price, image]
+        `INSERT INTO cart (customerID, foodID, RestuarantID, foodName, price, quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [customerID, foodID, RestuarantID, foodName, price, quantity, image]
     );
     return result;
 };
@@ -21,6 +21,14 @@ export const removeFoodFromCart = async (cartID) => {
     const [ result ] = await pool.query(
         `DELETE FROM cart WHERE cartID = ?`,
         [cartID]
+    );
+    return result;
+}
+
+export const removeFoodFromCartByCustomer = async ( customerID ) => {
+    const [ result ] = await pool.query(
+        `DELETE FROM cart WHERE customerID = ?`,
+        [customerID]
     );
     return result;
 }

@@ -8,6 +8,7 @@ import categoryRouter from './route/category.js';
 import ordersRouter from './route/orders.js';
 import ordersItemRouter from './route/ordersItem.js';
 import cartRouter from './route/cart.js';
+import paymentRouter from './route/payment.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -25,6 +26,8 @@ app.use('/api/category', categoryRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/ordersItem', ordersItemRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/payment', paymentRouter);
+
 
 
 

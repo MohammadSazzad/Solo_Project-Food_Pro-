@@ -4,8 +4,6 @@ const ProductContext = createContext(
     {
         products: [],
         setProducts: () => {},
-        cart: [],
-        setCart: () => {},
         user: {},
         setUser: () => {},
         orders: [],

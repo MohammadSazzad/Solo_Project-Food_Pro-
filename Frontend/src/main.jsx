@@ -16,6 +16,9 @@ import CategoryFood from './pages/foods/CategoryFood.jsx'
 import FoodListing from './pages/restuarant/FoodListing.jsx'
 import FoodDetails from './pages/foods/FoodDetails.jsx'
 import Cart from './pages/foods/Cart.jsx'
+import Payment from './pages/foods/Payment.jsx'
+import SuccessPayment from './pages/foods/SuccessPayment.jsx'
+import FailPayment from './pages/foods/FailPayment.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +43,11 @@ const router = createBrowserRouter(
         <Route path='categoryFood/:categoryName/:categoryID' element={<CategoryFood/>} />
         <Route path='foodDetails/:foodID' element={<FoodDetails/>} />
         <Route path='cart/' element={ <Cart /> } />
+        <Route path='payment' element={<Payment />} />
+      </Route>
+      <Route path='payment'>
+        <Route path='success/:tran_id' element={<SuccessPayment />} />
+        <Route path='fail/:tran_id' element={<FailPayment />} />
       </Route>
     </Route>
     

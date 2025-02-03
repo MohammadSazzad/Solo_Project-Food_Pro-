@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import styles from './FoodDetails.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -29,7 +29,13 @@ const FoodDetails = () => {
 
     console.log(food);
 
+    const qty= useRef();
+
     const handleAddCartButton = async() => {
+        if(qty.current.value>food.stock){
+            alert('Not enough stock');
+            return;
+        }
         const headers = {
             Authorization: `Bearer ${token}`,
         };
@@ -38,6 +44,7 @@ const FoodDetails = () => {
             {
                 foodID: food.foodID,
                 RestuarantID: food.RestuarantID,
+                quantity: qty.current.value,
             },
             { headers });
             console.log('Added to cart:', response.data);
@@ -147,10 +154,11 @@ const FoodDetails = () => {
                 <input
                 type="number"
                 className="form-control"
+                ref={qty}
                 id="quantity"
                 defaultValue="1"
                 min="1"
-                style={{ width: "80px" }}
+                style={{ width: "80px" } }
                 />
             </div>
             <button className="btn btn-primary btn-lg mb-3 me-2" onClick={handleAddCartButton}>

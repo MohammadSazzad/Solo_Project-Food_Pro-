@@ -4,7 +4,6 @@ import axios from "axios";
 
 const ProductContextProvider = ({children}) => {
     const [category, setCategory] = useState([]);
-    
 
 
     useEffect(() => {

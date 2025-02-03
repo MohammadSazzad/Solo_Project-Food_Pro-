@@ -21,6 +21,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.3",
     "nodemailer": "^6.9.15",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "sslcommerz-lts": "^1.1.0"
   }
 }
